@@ -1,6 +1,6 @@
 # Hamming Code Tool
 
-A browser based Hamming Code simulator designed to demonstrate how four-bit binary data is converted into a seven-bit Hamming Code, how transmission errors are introduced, and how those errors are detected and corrected.
+A browser based Hamming Code simulator designed to demonstrate how four bit binary data is converted into a seven-bit Hamming Code, how transmission errors are introduced, and how those errors are detected and corrected.
 
 **Group:** G12  
 **Course:** Computer Architecture  
@@ -139,7 +139,7 @@ Assuming that all goes well and as planned, the following will be our situation 
 
 ## 9. Sketch
 
-*Project sketch/reference is included in the original project document.*
+*Project sketch/reference will be included seperately.*
 
 ---
 
