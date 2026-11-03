@@ -1,4 +1,3 @@
-# G12-Hamming-Code-7-4
 # G12 – Hamming Code (7,4) Tool
 
 **Course:** Computer Architecture  
