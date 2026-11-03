@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>G12 Hamming Code Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <h1>Hamming Code (7,4) Tool</h1>
+
+    <h2>Enter Four Data Bits</h2>
+
+    <input type="text" id="d1" maxlength="1" placeholder="D1">
+    <input type="text" id="d2" maxlength="1" placeholder="D2">
+    <input type="text" id="d3" maxlength="1" placeholder="D3">
+    <input type="text" id="d4" maxlength="1" placeholder="D4">
+
+    <br><br>
+
+    <button onclick="generateCode()">Generate Code</button>
+
+    <h2>Generated Hamming Code</h2>
+
+    <div id="code"></div>
+
+    <p>Blue: Parity Bits | Green: Data Bits</p>
+
+    <h2>Error Simulation</h2>
+    <p>Click any bit above to change its value.</p>
+
+    <button onclick="detectError()">Detect Error</button>
+    <button onclick="correctError()">Correct Error</button>
+
+    <h2>Result</h2>
+
+    <p id="result"></p>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
