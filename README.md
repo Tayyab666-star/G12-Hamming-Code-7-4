@@ -150,7 +150,7 @@ This project uses HTML, CSS, and JavaScript and is designed to run directly in a
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone <https://github.com/Tayyab666-star/G12-Hamming-Code-7-4/>
 ```
 
 2. Open the project folder.
