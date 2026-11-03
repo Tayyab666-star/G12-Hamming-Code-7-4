@@ -1,444 +1,191 @@
-# G12 – Hamming Code (7,4) Tool
+# Hamming Code Tool
 
+A browser based Hamming Code simulator designed to demonstrate how four-bit binary data is converted into a seven-bit Hamming Code, how transmission errors are introduced, and how those errors are detected and corrected.
+
+**Group:** G12  
 **Course:** Computer Architecture  
-**Project Group:** G12
+**University:** Hitec University, Taxila  
+
+**Submitted To:** Muhammad Hassan Butt
+
+---
+
+## Table of Contents
+
+- [Introduction](#1-introduction)
+- [Problem Statement](#2-problem-statement)
+- [Project Objectives](#3-project-objectives)
+- [Proposed Solution](#4-proposed-solution)
+- [Main Features](#5-main-features)
+- [Technologies and Tools](#6-technologies-and-tools)
+- [Division of Responsibilities](#7-division-of-responsibilities)
+- [Expected Outcomes](#8-expected-outcomes)
+- [Project Sketch](#9-sketch)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
 
 ## Group Members
 
-| Member Name | Registration Number | Responsibility |
-|---|---|---|
-| Tayyab Nisar | FA-2024/BS CS/152 | Frontend Development |
-| Amin Bin Rashid | FA-2024/BS CS/157 | Backend Logic and Calculations |
+| Member | Name | Roll Number | Responsibility |
+|---|---|---|---|
+| Member 1 | Amin Bin Rashid | 24-CS-157 | Front-End Development |
+| Member 2 | Tayyab Nisar | 24-cs-152 | Back-End Development (Logic) |
 
 ---
 
-# 1. Project Overview
+## 1. Introduction
 
-The Hamming Code (7,4) Tool is a web-based application designed to demonstrate error detection and correction in digital communication.
+The fact of the matter is that in many cases, there is nothing straightforward about the movement of data. The bit of information that was supposed to be a zero may turn out to be a one, and vice versa, because of various disturbances within the network. It has been solved by Richard Hamming way back in 1950s, and his approach is still being discussed and practiced in schools since it is both simple enough to learn and efficient enough to correct mistakes in practice. That is why, for our semester project, we plan to design a small browser application that will put the theory into practice. Rather than just drawing parity check schemes, users would be able to input four bits, observe how the tool generates a scheme with seven bits, introduces the mistake, and then corrects it automatically.
 
-It converts four input data bits into a seven-bit Hamming codeword by adding three parity bits. Users can introduce an error by clicking any bit in the generated codeword. The application then identifies the incorrect bit position using syndrome calculation and corrects the error automatically.
+## 2. Problem Statement
 
-The project provides an interactive way for students to understand how Hamming Code works in Computer Architecture.
+To be honest, we must admit that when our instructor was explaining Hamming Code to us in the class, it took us some time to really understand everything. Taking into account such elements as parity bits allocation, manual XOR calculation, syndrome calculation and understanding what syndrome means – this is not an easy task at all. One error and the whole work will be incorrect. We noticed that our peers have had the same issues. There are many videos and articles about this topic on the Internet, but they either move too quickly or do not provide any visual representation at all. We believe that it is essential to have some sort of simulator where one could manipulate bits and observe the process of their correction step-by-step.
 
-## 2. Abstract
+## 3. Project Objectives
 
-The Hamming Code (7,4) Tool is a web-based application designed to demonstrate error detection and correction in digital communication. It converts four data bits into a seven-bit codeword by adding three parity bits using the even parity method. The application allows users to introduce an error by clicking any bit in the generated codeword. It then identifies the incorrect bit position using syndrome calculation and corrects the error automatically. The tool also displays parity bits and data bits in different colours to make the encoding and correction process easier to understand. This project provides a simple and interactive way to learn how Hamming Code improves data reliability.
+This is where we would like our tool to be capable of doing at the end of the day:
+
+- Get four binary numbers from the user and create a correct 7-bit Hamming Code from them.
+- Ensure that it is clearly visible which part is the parity bit and which part holds the data.
+- Make the user click on anything he or she wants to corrupt it intentionally just as it is in the actual noise channel.
+- Run parity check once again, identify the precise location of the error, and reverse the bit.
+- Take the user through all the steps in clear English so that they never wonder what was just done.
+
+## 4. Proposed Solution
+
+The concept is quite easy to understand. We will develop a single web page that performs all of these tasks through nothing but HTML, CSS, and JavaScript. Nothing more than just three simple files that are opened directly from the browser.
+
+Here is how it will work. The user will enter four bits, press a button and our tool will calculate the values of P1, P2, and P4 with even parity. Then all seven bits will be displayed one by one along with labels and colours.
+
+Now, the user will have the ability to toggle any of those bits in order to simulate an error during the transmission. Our tool will perform the three parity checks, find the syndrome, determine the exact location of the error and fix it right away. There will be a little steps area under the main display area for that purpose.
+
+## 5. Main Features
+
+### Feature 1: Hamming Code Encoder
+
+- The user enters four digits of binary numbers – no more, no less.
+- This tool creates the full seven bit Hamming Code using these four numbers.
+- P1, P2, and P4 are all computed internally following the principle of even parity.
+
+### Feature 2: Bit Position Visualization
+
+- Each individual piece gets its own personal space on the screen in a sequence from 1 to 7 positions.
+- The parity bits and data bits are coloured differently so that one can easily distinguish between them.
+- They have been marked well, and the user knows exactly what they are seeing.
+
+### Feature 3: Error Simulation
+
+- A click of a mouse toggles the value of the cell to either a 0 or 1 depending on its current state.
+- It replicates what occurs whenever data is corrupted during its transfer.
+- The revised code appears instantly allowing the user to know that the modification has been made.
+
+### Feature 4: Error Detection and Correction
+
+- The program performs all three types of parity checks on the encoded data.
+- From there, the syndrome is determined and the precise wrong bit is identified.
+- The wrong bit is corrected to whatever it was supposed to be in the first place.
+- The original program and its corrections are both provided along with an explanation of what occurred.
+
+## 6. Technologies and Tools
+
+We are trying to keep the tech stack very minimal. There is really no need to use complex technology for such a specific task. This is all that we will be using:
+
+- **HTML** – This will handle the structure of the page, including all the input fields, buttons, and output areas.
+- **CSS** – this is what gives everything its presentable look and provides us with color code for parity and data bits.
+- **JavaScript** – it is JavaScript that performs all the necessary computation including parity calculations, syndrome and correction.
+
+### Technologies We Are Staying Away From
+
+- There are no React/Angular/Vue-like structures; this would definitely be an overkill for a one-page solution.
+- There’s no need for a database; it will all take place on the browser.
+- No back-end code — everything is front end.
+- No third-party libraries or CDNs – we want it to work offline, simply by double-clicking the file.
+
+## 7. Division of Responsibilities
+
+### Member 1 – Amin Bin Rashid (Front-End Development)
+
+- Outlining how the page will look like before you write any code.
+- Constructing the HTML in `index.html` — all the input boxes, buttons, and output display boxes.
+- Making sure all of the coding in `style.css` is neat, legible, and correctly colored.
+- Ensuring that the seven boxes of bits align well and can be easily clicked on.
+- Checking the look of the page at various screen sizes.
+- Connecting the buttons so that clicking on them will trigger the JavaScript code.
+
+### Member 2 – Tayyab Nisar (Back-End Development)
+
+- Coding the entire logic from scratch in `script.js`.
+- Constructing an encoder to transform four binary bits into a seven-bit Hamming code.
+- Accurate computation of the parities for P1, P2, and P4.
+- Implementing the click to flip functionality correctly upon clicking a particular bit.
+- Creating the syndrome algorithm for finding and correcting the error location.
+- Including input validation to display a nice message in case of erroneous user inputs.
+- Developing a suite of tests cases to ensure that all features work correctly.
+
+## 8. Expected Outcomes
+
+Assuming that all goes well and as planned, the following will be our situation by the end of the semester:
+
+- An algorithm which is guaranteed to encode any four-bit sequence into a seven-bit Hamming code.
+- A clear and color-coded screen where you can easily tell which bits are parity bits and which are data bits.
+- An instant reaction to a user’s mistake through a smooth and fast-click flipping process.
+- A perfect error detection and correction scheme that always identifies and corrects the wrong bits.
+- Step-by-step simple explanations to ensure understanding by someone who is reading about Hamming Code for the first time.
+- A portable tool that works in all browsers without requiring any Internet connection or installation.
+
+## 9. Sketch
+
+*Project sketch/reference is included in the original project document.*
 
 ---
 
-# 3. Introduction
+## Installation
 
-In digital communication and computer systems, data is transferred and stored in the form of binary digits (0s and 1s). During data transmission or storage, errors can sometimes occur due to noise, interference, or hardware problems. These errors can change the original values of bits and affect the accuracy of information.
+This project uses HTML, CSS, and JavaScript and is designed to run directly in a web browser.
 
-Error detection and correction techniques are used to identify and handle such errors. One commonly used technique is Hamming Code, which adds extra bits to the original data to detect and correct errors.
+1. Clone the repository:
 
-The Hamming Code (7,4) Tool is developed to demonstrate this technique in a simple and interactive way. It takes four input data bits and converts them into a seven-bit codeword by adding three parity bits. The application then allows users to introduce an error, detect its position, and correct it automatically.
-
-## 3.1 Purpose of the Application
-
-The main purpose of this application is to help students understand how error detection and correction work in computer systems.
-
-Instead of only studying theoretical concepts, users can interact with the application and observe how data is encoded, how errors occur, and how incorrect bits are identified and corrected.
-
-The application uses the even parity method to calculate three parity bits. These bits help the system check the received codeword and determine whether an error has occurred.
-
-## 3.2 Project Objectives
-
-- Understand the basic concept of Hamming Code (7,4).
-- Convert four data bits into a seven-bit codeword.
-- Calculate parity bits using the XOR operation.
-- Simulate single-bit errors.
-- Identify incorrect bit positions using syndrome calculation.
-- Correct single-bit errors automatically.
-- Provide an interactive learning experience.
-
----
-
-# 4. Main Features
-
-The application includes four main features.
-
-## Feature 1: Hamming Code Encoding
-
-The application accepts four binary digits (0s and 1s) as input. It calculates three parity bits using the even parity method and combines them with the original data bits to generate a seven-bit Hamming codeword.
-
-## Feature 2: Different Colours for Parity and Data Bits
-
-The application displays parity bits and data bits in different colours. This makes it easier for users to identify the position and purpose of each bit in the seven-bit codeword.
-
-## Feature 3: Error Simulation by Clicking a Bit
-
-Users can click any bit in the generated seven-bit codeword to simulate a transmission error. The selected bit changes from 0 to 1 or from 1 to 0.
-
-## Feature 4: Error Detection and Correction
-
-After an error is introduced, the application performs parity checks and calculates the syndrome to identify the incorrect bit position. It then automatically flips the incorrect bit to restore the original codeword.
-
-The application also displays the correction process step by step.
-
----
-
-# 5. Background Research: Hamming Code (7,4)
-
-## 5.1 What is Hamming Code?
-
-Hamming Code is an error-correcting technique developed by Richard W. Hamming. It adds extra bits, called parity bits, to the original binary data.
-
-These additional bits help identify and correct a single incorrect bit in a received codeword.
-
-## 5.2 Understanding Hamming (7,4)
-
-The name Hamming (7,4) represents:
-
-- 7: Total number of bits after encoding.
-- 4: Original data bits.
-- 3: Additional parity bits.
-
-The three parity bits are placed at positions 1, 2 and 4. The remaining positions contain the original data bits.
-
-### Bit Position Arrangement
-
-| Position | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
-|---|---|---|---|---|---|---|---|
-| Type | P1 | P2 | D1 | P4 | D2 | D3 | D4 |
-
-P1, P2 and P4 are parity bits, while D1, D2, D3 and D4 are data bits.
-
-**Note:** This project uses bit positions numbered from left to right, starting at position 1.
-
-## 5.3 Even Parity
-
-Even parity means that the total number of 1s in each checked group must be even.
-
-The application uses the XOR operation to calculate parity bits.
-
-Basic XOR rules:
-
-| A | B | A XOR B |
-|---|---|---|
-| 0 | 0 | 0 |
-| 0 | 1 | 1 |
-| 1 | 0 | 1 |
-| 1 | 1 | 0 |
-
-## 5.4 Parity Bit Calculation
-
-Each parity bit checks a specific group of positions.
-
-| Parity Bit | Positions Checked |
-|---|---|
-| P1 | 1, 3, 5, 7 |
-| P2 | 2, 3, 6, 7 |
-| P4 | 4, 5, 6, 7 |
-
-The parity equations are:
-
-P1 = D1 XOR D2 XOR D4
-
-P2 = D1 XOR D3 XOR D4
-
-P4 = D2 XOR D3 XOR D4
-
-## 5.5 Encoding Example
-
-Suppose the input data is:
-
-**Data = 1011**
-
-Therefore:
-
-- D1 = 1
-- D2 = 0
-- D3 = 1
-- D4 = 1
-
-Calculate the parity bits:
-
-P1 = 1 XOR 0 XOR 1 = 0
-
-P2 = 1 XOR 1 XOR 1 = 1
-
-P4 = 0 XOR 1 XOR 1 = 0
-
-Place the bits in their respective positions:
-
-| Position | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
-|---|---|---|---|---|---|---|---|
-| Bit | 0 | 1 | 1 | 0 | 0 | 1 | 1 |
-| Type | P1 | P2 | D1 | P4 | D2 | D3 | D4 |
-
-**Final Hamming Codeword: 0110011**
-
-## 5.6 Error Detection Using Syndrome
-
-A syndrome is a binary value calculated by performing parity checks on the received codeword.
-
-The application calculates three syndrome bits:
-
-- S1 checks positions 1, 3, 5 and 7.
-- S2 checks positions 2, 3, 6 and 7.
-- S4 checks positions 4, 5, 6 and 7.
-
-The syndrome is arranged in the order S4 S2 S1.
-
-If the syndrome is 000, no single-bit error is detected.
-
-If the syndrome is non-zero, its binary value identifies the incorrect bit position, assuming a single-bit error.
-
-## 5.7 Error Correction Example
-
-Original codeword:
-
-0110011
-
-Suppose bit position 5 changes from 0 to 1.
-
-Received codeword:
-
-0110111
-
-The parity checks produce:
-
-| Syndrome Bit | Result |
-|---|---|
-| S1 | 1 |
-| S2 | 0 |
-| S4 | 1 |
-
-Syndrome = S4 S2 S1 = 101
-
-Binary 101 = Decimal 5.
-
-Therefore, the incorrect bit is at position 5.
-
-The application flips position 5 from 1 to 0.
-
-Corrected codeword:
-
-**0110011**
-
-The original codeword has been restored.
-
-**Limitation:** Standard Hamming (7,4) is designed to correct one-bit errors. It does not guarantee correct recovery when multiple bits are changed.
-
----
-
-# 6. Technologies Used
-
-The application will be developed using basic web technologies.
-
-| Technology | Purpose |
-|---|---|
-| HTML | Creates the application structure and input fields. |
-| CSS | Designs the interface, colours and bit boxes. |
-| JavaScript | Performs encoding, parity calculation, error detection and correction. |
-
-No database or backend server is required for the planned functionality. All calculations can be performed directly in the browser using JavaScript.
-
----
-
-# 7. System Workflow
-
-The application follows these steps:
-
-1. User enters four binary data bits.
-2. User clicks the Encode button.
-3. JavaScript calculates three parity bits.
-4. The application generates and displays the seven-bit codeword.
-5. Parity bits and data bits are displayed in different colours.
-6. User clicks any bit to simulate an error.
-7. User selects Detect and Correct.
-8. The application calculates the syndrome.
-9. The incorrect bit position is identified.
-10. The incorrect bit is flipped to restore the original codeword.
-11. The application displays the correction steps.
-
----
-
-# 8. Proposed User Interface
-
-The application will contain the following sections:
-
-1. Project heading: Hamming Code (7,4) Tool.
-2. Four-bit input field.
-3. Encode button.
-4. Seven-bit codeword display.
-5. Different colours for parity and data bits.
-6. Error simulation instruction.
-7. Detect and Correct button.
-8. Result section displaying the syndrome and error position.
-9. Step-by-step correction explanation.
-
-### Proposed Screen Layout
-
-```text
-+-------------------------------------------+
-|          HAMMING CODE (7,4) TOOL          |
-+-------------------------------------------+
-|                                           |
-|             Enter 4 Data Bits             |
-|                                           |
-|               [1] [0] [1] [1]             |
-|                                           |
-|                  [ENCODE]                 |
-|                                           |
-+-------------------------------------------+
-|             Generated Codeword            |
-|                                           |
-|          [0] [1] [1] [0] [0] [1] [1]     |
-|                                           |
-|          Parity Bits | Data Bits          |
-|                                           |
-|       Click any bit to introduce error    |
-|                                           |
-|              [DETECT & CORRECT]           |
-|                                           |
-+-------------------------------------------+
-|              Correction Steps             |
-|                                           |
-|       Syndrome: 000                       |
-|       Error Position: No Error            |
-|       Corrected Codeword: 0110011         |
-|                                           |
-+-------------------------------------------+
+```bash
+git clone <repository-url>
 ```
 
-The final interface will be designed using HTML and CSS.
+2. Open the project folder.
+3. Open `index.html` in your web browser.
+
+No additional installation or third-party libraries are required according to the project proposal.
+
+## Usage
+
+1. Open the Hamming Code Tool in your browser.
+2. Enter four binary digits.
+3. Generate the seven-bit Hamming Code.
+4. Observe the parity bits and data bits.
+5. Click any bit to simulate a transmission error.
+6. Run the parity checks.
+7. Observe the syndrome calculation and error location.
+8. View the corrected Hamming Code and step-by-step explanation.
+
+## Contributing
+
+Contributions are welcome.
+
+1. Fork the repository.
+2. Create a new branch for your changes.
+3. Make your changes while maintaining the project's original functionality.
+4. Test your changes.
+5. Submit a pull request with a clear description of your modifications.
+
+## License
+
+No license has been specified for this project.
 
 ---
 
-# 9. Group Members and Responsibilities
-
-The project work is divided between two members.
-
-## Member 1: Tayyab Nisar
-
-**Registration Number:** FA-2024/BS CS/152
-
-**Role:** Frontend Development
-
-Responsibilities:
-
-- Design the application page.
-- Create the seven-bit boxes.
-- Apply different colours to parity and data bits.
-- Implement bit-click interactions.
-- Design the correction steps and result section.
-- Connect the interface with the JavaScript logic.
-
-## Member 2: Amin Bin Rashid
-
-**Registration Number:** FA-2024/BS CS/157
-
-**Role:** Logic and Calculations
-
-Responsibilities:
-
-- Implement parity bit calculations.
-- Generate the seven-bit Hamming codeword.
-- Calculate syndrome values.
-- Identify the incorrect bit position.
-- Implement single-bit error correction.
-- Test the encoding and correction logic.
-
-Both members will work together to integrate and test the complete application.
-
----
-
-# 10. Project File Structure
-
-The project will use the following file structure:
-
-```text
-G12-Hamming-Code-7-4/
-│
-├── index.html
-├── style.css
-├── script.js
-├── README.md
-│
-└── screenshots/
-```
-
-### File Descriptions
-
-| File | Description |
-|---|---|
-| index.html | Main structure of the application. |
-| style.css | Styling, layout and colours. |
-| script.js | Hamming Code calculations and interactions. |
-| README.md | Project documentation and instructions. |
-| screenshots/ | Application screenshots for documentation. |
-
----
-
-# 11. Testing Plan
-
-The following test cases will be used to verify the application.
-
-| Test | Input Data | Expected Result |
-|---|---|---|
-| 1 | 0000 | 0000000 |
-| 2 | 1011 | 0110011 |
-| 3 | 0110 | 1100110 |
-| 4 | 1011, flip position 3 | Error detected at position 3 |
-| 5 | 1011, flip position 5 | Error detected at position 5 |
-| 6 | 1011, flip position 7 | Error detected at position 7 |
-| 7 | 1011, no error | Syndrome 000; no correction |
-
-The application will be considered successful when it correctly encodes four-bit data, detects single-bit errors, identifies their positions and restores the original codeword.
-
----
-
-# 12. Expected Outcome
-
-The expected outcome is a functional and interactive web application that demonstrates the working of Hamming Code (7,4).
-
-Users will be able to enter four data bits, generate a seven-bit codeword, introduce an error, identify its position and correct it automatically.
-
-The project will provide practical knowledge of parity bits, XOR operations, binary calculations and error correction techniques used in Computer Architecture.
-
----
-
-# 13. GitHub Repository
-
-The project source code and documentation will be maintained in a shared GitHub repository.
-
-**Repository Name:** G12-Hamming-Code-7-4
-
-**Repository Description:** A web-based Hamming Code (7,4) tool for encoding four data bits, simulating single-bit errors, detecting incorrect bit positions and correcting errors.
-
-### Repository 
-
-**Repository URL:** https://github.com/Tayyab666-star/G12-Hamming-Code-7-4/
----
-
-# 14. Research References
-
-The following educational and university resources were consulted to understand Hamming Code, parity calculations, syndrome generation and single-bit error correction.
-
-1. **University of New Brunswick (UNB)**  
-   Error Correction and the Hamming Code.  
-   https://www.ece.unb.ca/tervo/ee4253/hamming.shtml
-
-2. **Stanford University**  
-   Lecture 18: Error Detection and Correction.  
-   https://web.stanford.edu/class/ee179/lectures/notes18.pdf
-
-3. **Massachusetts Institute of Technology (MIT)**  
-   6.02 Notes, Chapter 5: Coping with Bit Errors using Error Correction Codes.  
-   https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/1cc286051b660feded4d17650bd21d61_MIT6_02F12_chap05.pdf
-
-4. **Rice University / Engineering LibreTexts**  
-   Error-Correcting Codes – Hamming Codes.  
-   https://eng.libretexts.org/Bookshelves/Electrical_Engineering/Introductory_Electrical_Engineering/Electrical_Engineering_(Johnson)/06%3A_Information_Communication/6.29%3A_Error-Correcting_Codes_-_Hamming_Codes
-
-5. **Rensselaer Polytechnic Institute (RPI)**  
-   EE4253: Hamming Code.  
-   https://cs.rpi.edu/academics/courses/fall04/os/c16/hamming.htm
-
----
-
-# 15. Conclusion
-
-The G12 Hamming Code (7,4) Tool is designed to provide a simple and practical demonstration of error detection and correction in digital communication. By combining HTML, CSS and JavaScript, the application will allow users to encode binary data, simulate errors, identify incorrect bits and correct single-bit errors. This project will improve understanding of Hamming Code and its importance in Computer Architecture.
+**Project:** Hamming Code Tool  
+**Group:** G12  
+**Department:** Computer Science  
+**University:** Hitec University, Taxila.
