@@ -409,18 +409,9 @@ The project source code and documentation will be maintained in a shared GitHub 
 
 **Repository Description:** A web-based Hamming Code (7,4) tool for encoding four data bits, simulating single-bit errors, detecting incorrect bit positions and correcting errors.
 
-### Repository Setup
+### Repository 
 
-1. Create a GitHub account at https://github.com/.
-2. Create a new repository named `G12-Hamming-Code-7-4`.
-3. Select Public visibility.
-4. Initialize the repository with a README file.
-5. Upload HTML, CSS and JavaScript files using the GitHub website.
-6. Invite the second group member as a collaborator.
-7. Upload project screenshots when the interface is ready.
-
-**Repository URL:** Add your actual GitHub repository link here after creating it.
-
+**Repository URL:** https://github.com/Tayyab666-star/G12-Hamming-Code-7-4/
 ---
 
 # 14. Research References
